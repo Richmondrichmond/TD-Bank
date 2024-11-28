@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TD Bank - Client Login</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        .page-container {
+            position: relative;
+            min-height: 100vh;
+            background: url('besttdb3.png') no-repeat center center/cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 20, 0.274); /* TD Bank Green with opacity */
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #ffffff3e;
+        }
+
+        .login-box, .account-box {
+            width: 100;
+            max-width: 400px;
+            padding: 200px;
+            background: #ffffff24;
+            color: #333;
+            border-radius: 100px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-box h1, .account-box h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #004c3f;
+            text-align: Top;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 3px solid #cccccc1a;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background: #00a859;
+            color: #ffffff91;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-box button:hover {
+            background: #008f4a;
+        }
+
+        .account-box .account-details {
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .account-box .account-details p {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .account-box button {
+            width: 100%;
+            padding: 10px;
+            background: #d9534f;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .account-box button:hover {
+            background: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="overlay"></div>
+        <div class="content">
+            <!-- Login Form -->
+            <div class="login-box" id="loginBox">
+                <h1>TD Bank Login</h1>
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button id="loginButton">Login</button>
+            </div>
+                  
+
+            <!-- Account Details -->
+            <div class="account-box" id="accountBox" style="display: none;">
+                <h1>Welcome, Anita!</h1>
+                <div class="account-details">
+                    <p><strong>Checking Account:</strong> $500,000</p>
+
+
+                    <p><strong>Savings Account:</strong> $250,000</p>
+
+                    
+                    <p><strong>Available Balance:</strong> $750,000</p>
+                </div>
+                <button id="logoutButton">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock User Data
+        const user = {
+            username: 'Anita',
+            password: 'Cat123',
+            accounts: {
+                checking: 500000,
+                savings: 250000,
+                total: 750000
+            }
+        };
+
+        // Elements
+        const loginBox = document.getElementById('loginBox');
+        const accountBox = document.getElementById('accountBox');
+        const loginButton = document.getElementById('loginButton');
+        const logoutButton = document.getElementById('logoutButton');
+
+        // Login Event
+        loginButton.addEventListener('click', () => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === user.username && password === user.password) {
+                alert('Login successful!');
+                loginBox.style.display = 'none'; // Hide login box
+                accountBox.style.display = 'block'; // Show account details
+            } else {
+                alert('Invalid username or password.');
+            }
+        });
+
+        // Logout Event
+        logoutButton.addEventListener('click', () => {
+            alert('You have been logged out.');
+            loginBox.style.display = 'block'; // Show login box
+            accountBox.style.display = 'none'; // Hide account details
+        });
+    </script>
+</body>
+</html>
